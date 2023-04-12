@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import holaView
+from bitacora.views.piloto.views import piloto_list
+
 
 urlpatterns = [
-    path('', holaView, name='home')
+    path('piloto/list/', piloto_list, name='piloto_list'),
 ]

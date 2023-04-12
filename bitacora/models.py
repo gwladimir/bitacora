@@ -38,6 +38,6 @@ class Vuelo(models.Model):
 
     class Meta:
             verbose_name = 'Vuelo'
-            verbose_name_plural='VUelos'
+            verbose_name_plural='Vuelos'
             db_table = 'Vuelos'
             ordering = ['id']

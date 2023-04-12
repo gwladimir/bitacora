@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<a href="{% url 'vista1' %}">click</a>
+
+<ul>
+    {% for vuelo in vuelos %}
+    <li>{{vuelo.id}} / {{vuelo.piloto.nombre}}</li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
