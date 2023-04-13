@@ -1,52 +1,38 @@
-{% extends 'body.html' %}
+{% extends 'list.html' %}
 
-{% block content %}
-<div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-search"></i>
-            {{title}}
-        </h3>
-    </div>
+{% block columns %}
+<tr>
+    <th scope="col">Nro</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">Identificación</th>
+    <th scope="col">Fecha Registro</th>
+    <!-- <th scope="col">Fecha Creación</th> -->
+    <!-- <th scope="col">Fecha Actualización</th> -->
+    <th scope="col">Edad</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Avatar</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
 
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Nro</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Identificacion</th>
-                    <th scope="col">Fecha_Registro</th>
-                    <th scope="col">Fecha_Creacion</th>
-                    <th scope="col">Fecha Actualizacion</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Estado</th>
-                    <!-- <th scope="col">Avatar</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for p in pilotos %}
-                <tr>
-                    <td>{{ p.id }}</td>
-                    <td>{{ p.nombre }}</td>
-                    <td>{{ p.apellido }}</td>
-                    <td>{{ p.identificacion }}</td>
-                    <td>{{ p.fecha_registro }}</td>
-                    <td>{{ p.fecha_creacion }}</td>
-                    <td>{{ p.fecha_actualizacion }}</td>
-                    <td>{{ p.edad }}</td>
-                    <td>{{ p.estado }}</td>
-                    <!-- <td>{{ p.avatar }}</td> -->
-                    <td>
-                        <button type="button" class="btn btn-warning btn-xs bt-flat"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-xs bt-flat"><i class="fas fa-trash-alt"></i></button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
+{% block rows %}
+{% for p in object_list %}
+<tr>
+    <td>{{ p.id }}</td>
+    <td>{{ p.nombre }}</td>
+    <td>{{ p.apellido }}</td>
+    <td>{{ p.identificacion }}</td>
+    <td>{{ p.fecha_registro }}</td>
+    <!-- <td>{{ p.fecha_creacion }}</td> -->
+    <!-- <td>{{ p.fecha_actualizacion }}</td> -->
+    <td>{{ p.edad }}</td>
+    <td>{{ p.estado }}</td>
+    <td>{{ p.avatar }}</td>
+    <td>
+        <button type="button" class="btn btn-warning btn-xs bt-flat"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-danger btn-xs bt-flat"><i class="fas fa-trash-alt"></i></button>
+    </td>
+</tr>
+{% endfor %}
 {% endblock %}

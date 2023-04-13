@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.forms import model_to_dict
 
 # Create your models here.
      
@@ -22,7 +23,10 @@ class Piloto(models.Model):
         verbose_name_plural='Pilotos'
         db_table = 'Pilotos'
         ordering = ['id']
-
+    
+    def toJSON(self):
+         item = model_to_dict(self)
+         return item
 
 class Vuelo(models.Model):
     piloto = models.ForeignKey(Piloto, on_delete=models.CASCADE, related_name='Vuelos')
