@@ -1,4 +1,4 @@
-from django.forms import DateTimeInput, ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea
 from bitacora.models import Piloto
 
 
@@ -51,3 +51,15 @@ class PilotoForm(ModelForm):
             ),
 
         }
+
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                form.save()
+            else:
+                data['error'] = form.errors
+        except Exception as e:
+            data['error'] = str(e)
+        return data
