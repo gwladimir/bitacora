@@ -58,19 +58,9 @@ class PilotoCreateView(CreateView):
             data['error'] = str(e)
         return JsonResponse(data)
 
-    #     print(request.POST)
-    #     form = PilotoForm(request.POST)
-    #     if form.is_valid():
-    #         form.save
-    #         return HttpResponseRedirect(self.success_url)
-    #     self.object = None
-    #     context = self.get_context_data(**kwargs)
-    #     context['form'] = form
-    #     return render(request, self.template_name, context)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Creación Piloto'
+        context['title'] = 'Creación de Piloto'
         context['entity'] = 'Pilotos'
         context['list_url'] = reverse_lazy('piloto_list')
         context['action'] = 'add'
@@ -102,7 +92,7 @@ class PilotoUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Edición un Piloto'
+        context['title'] = 'Edición de Piloto'
         context['entity'] = 'Pilotos'
         context['list_url'] = reverse_lazy('piloto_list')
         context['action'] = 'edit'
@@ -128,7 +118,7 @@ class PilotoDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Emilinar un Piloto'
+        context['title'] = 'Emilinación de Piloto'
         context['entity'] = 'Pilotos'
         context['list_url'] = reverse_lazy('piloto_list')
         return context
