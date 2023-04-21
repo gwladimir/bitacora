@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from homepage.views import IndexView
+from login.views import *
 
 urlpatterns = [
+    path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
-    path('bitacora/', include('bitacora.urls'))
+    path('bitacora/', include('bitacora.urls')),
+    path('login/', include('login.urls')),
 ]

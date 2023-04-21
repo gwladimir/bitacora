@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm, TextInput, Textarea
 from bitacora.models import Piloto
 
@@ -63,3 +64,11 @@ class PilotoForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
+    def clean(self):
+        cleaned = super().clean()
+        if len(cleaned['identificacion']) <= 9:
+            raise forms.ValidationError('Validacion xxx')
+            # self.add_error('identificacion', 'le falta digitos')
+        print(cleaned)
+        return cleaned

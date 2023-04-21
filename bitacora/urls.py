@@ -7,4 +7,5 @@ urlpatterns = [
     path('piloto/add/', PilotoCreateView.as_view(), name='piloto_create'),
     path('piloto/edit/<int:pk>/', PilotoUpdateView.as_view(), name='piloto_update'),
     path('piloto/delete/<int:pk>/', PilotoDeleteView.as_view(), name='piloto_delete'),
+    path('piloto/form/', PilotoFormView.as_view(), name='piloto_form'),
 ]

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from bitacora.forms import PilotoForm
@@ -121,4 +121,28 @@ class PilotoDeleteView(DeleteView):
         context['title'] = 'Emilinación de Piloto'
         context['entity'] = 'Pilotos'
         context['list_url'] = reverse_lazy('piloto_list')
+        return context
+
+
+class PilotoFormView(FormView):
+    form_class = PilotoForm
+    template_name = 'piloto/create.html'
+    success_url = reverse_lazy('piloto_list')
+
+    def form_valid(self, form):
+        print(form.is_valid())
+        print(form)
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        print(form.is_valid())
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Form | Piloto'
+        context['entity'] = 'Pilotos'
+        context['list_url'] = reverse_lazy('piloto_list')
+        context['action'] = 'add'
         return context
