@@ -111,6 +111,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -127,4 +129,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/bitacora/piloto/list/'
+LOGIN_REDIRECT_URL = '/bitacora/dashboard/'
+
+LOGOUT_REDIRECT_URL = '/login/'
+
+LOGIN_URL = '/login/'

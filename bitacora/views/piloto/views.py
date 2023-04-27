@@ -1,18 +1,19 @@
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
-from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from bitacora.forms import PilotoForm
 from bitacora.models import Piloto
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class PilotoListView(ListView):
     model = Piloto
     template_name = 'piloto/list.html'
 
-    # @method_decorator(login_required)
     @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -45,6 +46,10 @@ class PilotoCreateView(CreateView):
     template_name = 'piloto/create.html'
     success_url = reverse_lazy('piloto_list')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, *arg, **kwargs):
         data = {}
         try:
@@ -73,6 +78,7 @@ class PilotoUpdateView(UpdateView):
     template_name = 'piloto/create.html'
     success_url = reverse_lazy('piloto_list')
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -104,6 +110,7 @@ class PilotoDeleteView(DeleteView):
     template_name = 'piloto/delete.html'
     success_url = reverse_lazy('piloto_list')
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)

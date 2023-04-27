@@ -1,14 +1,14 @@
-from django import forms
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import *
 from bitacora.models import Piloto
 
 
 class PilotoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for form in self.visible_fields():
-            form.field.widget.attrs['class'] = 'form-control'
-            form.field.widget.attrs['autocomplete'] = 'off'
+        # for form in self.visible_fields():
+        #     form.field.widget.attrs['class'] = 'form-control'
+        #     form.field.widget.attrs['autocomplete'] = 'off'
+        self.fields['nombre'].widget.attrs['autoofocus'] = True
 
     class Meta:
         model = Piloto
@@ -65,10 +65,10 @@ class PilotoForm(ModelForm):
             data['error'] = str(e)
         return data
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['identificacion']) <= 9:
-            raise forms.ValidationError('Validacion xxx')
-            # self.add_error('identificacion', 'le falta digitos')
-        print(cleaned)
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['identificacion']) <= 9:
+    #         raise forms.ValidationError('Validacion xxx')
+    #         # self.add_error('identificacion', 'le falta digitos')
+    #     print(cleaned)
+    #     return cleaned

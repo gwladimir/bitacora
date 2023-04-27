@@ -7,7 +7,6 @@ $(document).ready(function () {
     ajax: {
       url: window.location.pathname,
       type: 'POST',
-      dataType: "json",
       data: { 'action': 'searchdata' },
       dataSrc: ""
     },
